@@ -1,0 +1,20 @@
+Finding a value in a sorted sequence
+In its simplest form, binary search is used to quickly find a value in a sorted sequence (consider a sequence an ordinary array for now). We’ll call the sought value the target value for clarity. Binary search maintains a contiguous subsequence of the starting sequence where the target value is surely located. This is called the search space. The search space is initially the entire sequence. At each step, the algorithm compares the median value in the search space to the target value. Based on the comparison and because the sequence is sorted, it can then eliminate half of the search space. By doing this repeatedly, it will eventually be left with a search space consisting of a single element, the target value.
+
+If the target value was not present in the sequence, binary search would empty the search space entirely. This condition is easy to check and handle. Here is some code to go with the description:
+
+binary_search(A, target):
+   lo = 1, hi = size(A)
+   while lo <= hi:
+      mid = lo + (hi-lo)/2
+      if A[mid] == target:
+         return mid            
+      else if A[mid] < target: 
+         lo = mid+1
+      else:
+         hi = mid-1
+            
+   // target was not found
+
+Complexity
+Since each comparison binary search uses halves the search space, we can assert and easily prove that binary search will never use more than (in big-oh notation) O(log N) comparisons to find the target value.
